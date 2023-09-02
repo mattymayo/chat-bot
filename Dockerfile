@@ -7,17 +7,6 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 COPY ./requirements.txt .
-
-RUN apt-get update -y && \
-    apt-get install -y netcat && \
-    apt-get install -y nodejs && \
-    apt-get install -y npm && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
-
-COPY ./entrypoint.sh .
-RUN chmod +x /code/entrypoint.sh
+RUN pip install -r requirements.txt
 
 COPY . .
-
-ENTRYPOINT ["/code/entrypoint.sh"]
